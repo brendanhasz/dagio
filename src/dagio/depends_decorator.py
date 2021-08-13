@@ -2,11 +2,9 @@ import asyncio
 
 
 def depends(*dependencies):
-
     def outer_wrapped_fn(fn):
-
         async def inner_wrapped_fn(self):
-                
+
             # Set up task list if this is the top level node
             top_level_fn = False
             if getattr(self, "__task_list_lock", None) is None:
