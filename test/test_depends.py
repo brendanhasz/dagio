@@ -1,10 +1,11 @@
 import asyncio
 
 import pytest
- 
+
 from dagio import depends
- 
- 
+
+
+@pytest.mark.asyncio
 async def test_depends_single_dependency():
     """Test a simple two-element dag with a single dependency
 
@@ -30,8 +31,9 @@ async def test_depends_single_dependency():
     assert task_run_order[1] == 'b'
 
 
+@pytest.mark.asyncio
 async def test_depends_two_dependencies():
-    """Test a simple two-element dag with a multiple dependencies
+    r"""Test a simple two-element dag with a multiple dependencies
 
     A
     |
@@ -45,7 +47,7 @@ async def test_depends_two_dependencies():
     """
 
     task_start_order = []
-    task_stop_order = []
+    task_end_order = []
 
     class TestDag:
 
@@ -90,11 +92,11 @@ async def test_depends_two_dependencies():
             task_end_order.append('g')
 
     test_dag_object = TestDag()
-    await test_dag_object.task_b()
+    await test_dag_object.task_g()
 
     assert len(task_start_order) == 7
-    assert task_start_order[0] == 'a'
-    assert task_start_order[1] == 'c'
+    assert 'a' in task_start_order[:2]
+    assert 'c' in task_start_order[:2]
     assert task_start_order[2] == 'b'
     assert task_start_order[3] == 'd'
     assert 'e' in task_start_order[4:6]

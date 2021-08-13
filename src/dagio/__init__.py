@@ -1,1 +1,1 @@
-from depends_decorator import depends
+from .depends_decorator import depends
