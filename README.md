@@ -1,5 +1,9 @@
 # dagio: Asynchronous I/O - with DAGs!
 
+[![Version Badge](https://img.shields.io/pypi/v/dagio)](https://pypi.org/project/dagio/)
+[![Test Status](https://github.com/brendanhasz/dagio/workflows/tests/badge.svg)](https://github.com/brendanhasz/probflow/actions?query=branch%3Amaster)
+
+
 `dagio` is an embarassingly simple Python package for running directed acyclic
 graphs of asynchronous I/O operations.  It is built using and to be used with
 Python's built-in [`asyncio`](https://docs.python.org/3/library/asyncio.html)
