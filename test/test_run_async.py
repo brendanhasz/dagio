@@ -1,4 +1,5 @@
 import asyncio
+import time
 
 import pytest
 
@@ -53,14 +54,14 @@ async def test_run_async_two_dependencies():
         @run_async
         def task_a(self):
             task_start_order.append("a")
-            await asyncio.sleep(0.1)
+            time.sleep(0.1)
             task_end_order.append("a")
 
         @depends("task_a")
         @run_async
         def task_b(self):
             task_start_order.append("b")
-            await asyncio.sleep(0.1)
+            time.sleep(0.1)
             task_end_order.append("b")
 
         async def task_c(self):
