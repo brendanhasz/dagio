@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="dagio",
-    version="0.0.1",
+    version="0.0.2",
     author="Brendan Hasz",
     author_email="winsto99@gmail.com",
     description="A python package for running directed acyclic graphs of asynchronous I/O operations",

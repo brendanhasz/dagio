@@ -158,6 +158,33 @@ Note that:
    If you need a lock, you can set up an [`asyncio.Lock`](https://docs.python.org/3/library/asyncio-sync.html#lock)
    in your class's `__init__`.
 
+You can also run a non-async method asynchronously in a thread pool using the `run_async` decorator:
+
+```python
+import asyncio
+from dagio import depends, run_async
+
+
+class MyDag:
+
+    @run_async
+    def task_a(self):
+        # a sync method which does task a stuff...
+
+    @run_async
+    def task_b(self):
+        # a sync method which does task b stuff...
+
+    @depends("task_a", "task_b")
+    async def task_c(self):
+        # does task c stuff...
+
+
+async def run():
+    obj = MyDag() 
+    await obj.task_c()  #runs a and b concurrently, then c
+```
+
 That's it.  That's all this package does.
 
 
